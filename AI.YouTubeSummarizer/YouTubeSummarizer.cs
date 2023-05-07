@@ -15,7 +15,7 @@ public class YouTubeSummarizer
     private double _lastStartTime;
     private TranscriptItem _lastItem;
     private string _videoTitle;
-    private LanguageConfig _selectedLanguage;
+    private string _selectedLanguage;
 
     public YouTubeSummarizer(ConfigurationSettings configData)
     {
@@ -40,7 +40,7 @@ Title: {this._videoTitle}
 --------------------------------------------------");
         IChatCompletion chatCompletion = new OpenAIChatCompletion("gpt-3.5-turbo", this._configData.OPENAI_KEY);
 
-        var chat = (OpenAIChatHistory)chatCompletion.CreateNewChat(this._selectedLanguage.Prompt);
+        var chat = (OpenAIChatHistory)chatCompletion.CreateNewChat("You are a summarizer, I will provide you any language truncated text and you are going to summarize it for me in " + this._selectedLanguage);
 
         if (this._transcriptItems.Count > 0)
         {
@@ -62,7 +62,7 @@ Title: {this._videoTitle}
             TranscriptList transcriptResult = youTubeTranscriptApi.ListTranscripts(videoId);
             this._videoTitle = transcriptResult.VideoTitle;
 
-            foreach (var item in transcriptResult.FindTranscriptOrDefaultToExisting("en", "pt").Fetch())
+            foreach (var item in transcriptResult.FindTranscriptOrDefaultToExisting("en").Fetch())
             {
                 this._transcriptItems.Enqueue(item);
             }
@@ -140,12 +140,7 @@ Title: {this._videoTitle}
         if (this._configData.Languages is null || this._configData.Languages.Count == 0)
         {
             Console.WriteLine("⚠️ No language configuration detected.\n\nDefaulting to English.\n");
-            this._selectedLanguage = new LanguageConfig
-            {
-                Alias = "en",
-                Description = "English",
-                Prompt = "You are a summarizer, every text I provide you are going to summarize it for me"
-            };
+            this._selectedLanguage = "English";
 
             return;
         }
@@ -155,7 +150,7 @@ Title: {this._videoTitle}
             Console.WriteLine("Please select the language you want to use for the summarization: ");
             for (int i = 0; i < this._configData.Languages.Count; i++)
             {
-                Console.WriteLine($"{i + 1} - {this._configData.Languages[i].Description}");
+                Console.WriteLine($"{i + 1} - {this._configData.Languages[i]}");
             }
             Console.Write("Option: ");
 
@@ -168,7 +163,7 @@ Title: {this._videoTitle}
                     {
                         this._selectedLanguage = this._configData.Languages[optionNumber - 1];
 
-                        Console.WriteLine($"\nSelected language: {this._selectedLanguage.Description}\n");
+                        Console.WriteLine($"\nSelected language: {this._selectedLanguage}\n");
                         return;
                     }
                 }
@@ -178,7 +173,7 @@ Title: {this._videoTitle}
         }
 
         this._selectedLanguage = this._configData.Languages[0];
-        Console.WriteLine($"ℹ️ Only one language configuration detected.\n\nAuto-Selected language: {this._selectedLanguage.Description}\n");
+        Console.WriteLine($"ℹ️ Only one language configuration detected.\n\nAuto-Selected language: {this._selectedLanguage}\n");
         return;
     }
 }

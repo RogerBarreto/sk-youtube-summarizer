@@ -4,13 +4,23 @@
 
 Summarize your Youtube Videos quickly using your preferred language.
 
-## End user - Installation
+## End user - Setup
 
 Get the released version executable. Here:
 
-1. Setup your OpenAI API Key
+##### Setup your OpenAI API Key
 
-   Create an environment variable named `OPENAI_KEY` with your OpenAI API Key.
+Create an environment variable named `OPENAI_KEY` with your OpenAI API Key.
+
+##### Optionally you can use your own preferred languages to summarize
+
+Change `config.json` file with your preferred languages and leave it in the same folder as the application.
+
+```json
+{
+  "languages": ["English", "Your Language 1", "Your Language 2", ...]
+}
+```
 
 ## Developer Setup
 
@@ -27,7 +37,7 @@ dotnet user-secrets init
 dotnet user-secrets set "OPENAI_KEY" "<your key>"
 ```
 
-### Running / Development
+Running / Debugging
 
 ```powershell
 dotnet run
@@ -35,8 +45,16 @@ dotnet run
 
 ### Deploying / Publishing
 
+Windows:
+
 ```powershell
-dotnet publish -c Release
+dotnet publish -r win-x64 -c Release
+```
+
+Linux:
+
+```powershell
+dotnet publish -r linux-x64 -c Release -p:PublishReadyToRun=true
 ```
 
 ## Projects Used

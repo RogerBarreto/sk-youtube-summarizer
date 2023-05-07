@@ -51,7 +51,7 @@ internal class Program
     {
         var builder = new ConfigurationBuilder()
             .AddUserSecrets<ConfigurationSettings>()
-            .AddJsonFile("config.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("config.json", optional: true, reloadOnChange: true)
             .AddEnvironmentVariables();
 
         var configuration = builder.Build();

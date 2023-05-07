@@ -9,17 +9,5 @@ public class ConfigurationSettings
     public string OPENAI_KEY { get; set; }
 
     [JsonPropertyName("languages")]
-    public IReadOnlyList<LanguageConfig> Languages { get; set; }
-}
-
-public class LanguageConfig
-{
-    [JsonPropertyName("alias")]
-    public string Alias { get; set; }
-
-    [JsonPropertyName("description")]
-    public string Description { get; set; }
-
-    [JsonPropertyName("prompt")]
-    public string Prompt { get; set; }
+    public IReadOnlyList<string> Languages { get; set; }
 }

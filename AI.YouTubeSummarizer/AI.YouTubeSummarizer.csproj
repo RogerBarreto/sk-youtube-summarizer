@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
+		<Version>0.1.0</Version>
 		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>AI.YouTubeSummarizer</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -8,7 +9,6 @@
 		<UserSecretsId>a746658a-2ee0-448d-b156-5916b1b2d051</UserSecretsId>
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	</PropertyGroup>
 
 	<PropertyGroup  Condition="'$(Configuration)' == 'Release'" >
