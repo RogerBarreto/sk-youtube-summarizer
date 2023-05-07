@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33513.286
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{158A4E5E-AEE0-4D60-83C7-8E089B2D881D}"
+	ProjectSection(SolutionItems) = preProject
+		.\.gitignore = .\.gitignore
+		.\README.md = .\README.md
+	EndProjectSection
+EndProject
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AI.YouTubeSummarizer", "AI.YouTubeSummarizer\AI.YouTubeSummarizer.csproj", "{5147A4F4-4B48-443F-A7D6-C432299C2B89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeTranscriptApi", "YoutubeTranscriptApi\YoutubeTranscriptApi.csproj", "{0A421E49-DE2D-4934-AB41-FAE58893B730}"

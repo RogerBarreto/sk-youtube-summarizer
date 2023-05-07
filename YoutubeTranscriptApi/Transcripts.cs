@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using YoutubeTranscriptApi;
 
 namespace YoutubeTranscriptApi
 {
@@ -231,13 +232,17 @@ namespace YoutubeTranscriptApi
         /// ['de', 'en'] it will first try to fetch the german transcript(de) and then fetch the english transcript(en) if
         /// it fails to do so.</param>
         /// <returns>the found Transcript</returns>
-        public Transcript FindTranscript(IReadOnlyList<string> languageCodes)
+        public Transcript FindTranscript(IReadOnlyList<string> languageCodes, bool defaultToExisting = false)
         {
-            return findTranscript(languageCodes, new[]
-            {
-                _manuallyCreatedTranscripts,
-                _generatedTranscripts
-            });
+            return findTranscript(
+                languageCodes, 
+                new[] { this._manuallyCreatedTranscripts, this._generatedTranscripts }, 
+                defaultToExisting);
+        }
+
+        public Transcript FindTranscriptOrDefaultToExisting(params string[] languageCodes)
+        {
+            return FindTranscript(languageCodes, true);
         }
 
         /// <summary>
@@ -247,7 +252,7 @@ namespace YoutubeTranscriptApi
         /// ['de', 'en'] it will first try to fetch the german transcript(de) and then fetch the english transcript(en) if
         /// it fails to do so.</param>
         /// <returns>the found Transcript</returns>
-        public Transcript FindGeneratedTranscript(IReadOnlyList<string> languageCodes)
+        public Transcript FindGeneratedTranscript(IEnumerable<string> languageCodes)
         {
             return findTranscript(languageCodes, new[] { _generatedTranscripts });
         }
@@ -264,7 +269,7 @@ namespace YoutubeTranscriptApi
             return findTranscript(languageCodes, new[] { _manuallyCreatedTranscripts });
         }
 
-        private Transcript findTranscript(IReadOnlyList<string> languageCodes, IReadOnlyList<Dictionary<string, Transcript>> transcriptDicts)
+        private Transcript findTranscript(IEnumerable<string> languageCodes, IReadOnlyList<Dictionary<string, Transcript>> transcriptDicts, bool defaultToFirstFound = false)
         {
             foreach (var languageCode in languageCodes)
             {
@@ -273,6 +278,21 @@ namespace YoutubeTranscriptApi
                     if (transcriptDict.TryGetValue(languageCode, out var val))
                     {
                         return val;
+                    }
+                }
+            }
+
+            if (!defaultToFirstFound)
+            {
+                throw new NoTranscriptFound(VideoId, languageCodes, this);
+            }
+
+            foreach (var transcriptDict in transcriptDicts)
+            {
+                {
+                    if (transcriptDict.Count > 0)
+                    {
+                        return transcriptDict.First().Value;
                     }
                 }
             }

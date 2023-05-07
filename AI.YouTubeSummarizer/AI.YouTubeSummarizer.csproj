@@ -1,23 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>AI.YouTubeSummarizer</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UserSecretsId>a746658a-2ee0-448d-b156-5916b1b2d051</UserSecretsId>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>AI.YouTubeSummarizer</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <UserSecretsId>a746658a-2ee0-448d-b156-5916b1b2d051</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup  Condition="'$(Configuration)' == 'Release'" >
+		<DebugType>None</DebugType>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Google.Apis.YouTube.v3" Version="1.60.0.3043" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+		<PackageReference Include="Microsoft.SemanticKernel" Version="0.13.277.1-preview" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.60.0.3043" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
-	  <PackageReference Include="Microsoft.SemanticKernel" Version="0.13.277.1-preview" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\YoutubeTranscriptApi\YoutubeTranscriptApi.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\YoutubeTranscriptApi\YoutubeTranscriptApi.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="config.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

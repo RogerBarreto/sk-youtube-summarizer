@@ -199,7 +199,7 @@ namespace YoutubeTranscriptApi
         /// <param name="videoId"></param>
         /// <param name="requestedLanguageCodes"></param>
         /// <param name="transcriptData"></param>
-        public NoTranscriptFound(string videoId, IReadOnlyList<string> requestedLanguageCodes, TranscriptList transcriptData)
+        public NoTranscriptFound(string videoId, IEnumerable<string> requestedLanguageCodes, TranscriptList transcriptData)
             : base(videoId, CAUSE_MESSAGE)
         {
             // TODO
