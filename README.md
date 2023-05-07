@@ -12,7 +12,7 @@ Linux -> English Summarization:
 
 ## End user - Setup
 
-Get the released version executable. Here:
+Get the released version executable. Here: [v0.1.0](https://github.com/RogerBarreto/sk-youtube-summarizer/releases/tag/v0.1.0)
 
 ##### Setup your OpenAI API Key
 
