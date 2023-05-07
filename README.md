@@ -1,5 +1,7 @@
 # Summarize Youtube Videos Quickly
 
+![summarizer-demo](https://user-images.githubusercontent.com/19890735/236650648-c1cb2791-6c3c-440e-ad9e-3ec08a349de9.gif)
+
 Summarize your Youtube Videos quickly using your preferred language.
 
 ## End user - Installation
