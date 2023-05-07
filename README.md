@@ -1,8 +1,14 @@
-# Summarize Youtube Videos Quickly
+# Summarize Youtube Videos Quickly for You
 
-![summarizer-demo](https://user-images.githubusercontent.com/19890735/236650648-c1cb2791-6c3c-440e-ad9e-3ec08a349de9.gif)
+This project has the simple purpose of make it very easy and fast to summarize youtube video transcriptions in your preferred language and platform (Windows or Linux)
 
-Summarize your Youtube Videos quickly using your preferred language.
+Windows -> Portuguese Summarization:
+
+![summarizer-win-portuguese](https://user-images.githubusercontent.com/19890735/236685352-3e31e223-8fe7-4823-8d29-d2accf5fea17.gif)
+
+Linux -> English Summarization: 
+
+![summarizer-linux-english](https://user-images.githubusercontent.com/19890735/236685356-5b83e37f-5e9e-4d51-b3bb-0799d2594cea.gif)
 
 ## End user - Setup
 
