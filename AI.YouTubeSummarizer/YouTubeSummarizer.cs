@@ -9,7 +9,7 @@ namespace AI.YouTubeSummarizer;
 
 public class YouTubeSummarizer
 {
-    private ConfigurationData _configData;
+    private ConfigurationSettings _configData;
     private Queue<TranscriptItem> _transcriptItems;
     private StringBuilder _sb;
     private double _lastStartTime;
@@ -17,7 +17,7 @@ public class YouTubeSummarizer
     private string _videoTitle;
     private LanguageConfig _selectedLanguage;
 
-    public YouTubeSummarizer(ConfigurationData configData)
+    public YouTubeSummarizer(ConfigurationSettings configData)
     {
         this._configData = configData;
         this._transcriptItems = new Queue<TranscriptItem>();
