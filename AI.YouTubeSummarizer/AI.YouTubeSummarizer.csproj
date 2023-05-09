@@ -11,7 +11,7 @@
 		<SelfContained>true</SelfContained>
 	</PropertyGroup>
 
-	<PropertyGroup  Condition="'$(Configuration)' == 'Release'" >
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
 		<DebugType>None</DebugType>
 		<DebugSymbols>False</DebugSymbols>
 	</PropertyGroup>
@@ -22,7 +22,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
-		<PackageReference Include="Microsoft.SemanticKernel" Version="0.13.277.1-preview" />
+		<PackageReference Include="Microsoft.SemanticKernel" Version="0.13.442.1-preview" />
 	</ItemGroup>
 
 	<ItemGroup>

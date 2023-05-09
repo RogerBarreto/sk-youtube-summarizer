@@ -101,7 +101,6 @@ Title: {this._videoTitle}
         var assistantMessage = await TryResilientlyAsync(chat, chatCompletion);
         chat.AddAssistantMessage(assistantMessage);
 
-        Console.WriteLine(assistantMessage);
         this._sb.Clear();
         this._lastStartTime = this._lastItem.Start;
     }
@@ -120,7 +119,17 @@ Title: {this._videoTitle}
             try
             {
                 trials++;
-                return await chatCompletion.GenerateMessageAsync(chat, new ChatRequestSettings { MaxTokens = 1000, Temperature = 1 });
+                var assistantMessage = string.Empty;
+
+                await foreach (string assistantWord in chatCompletion.GenerateMessageStreamAsync(chat,
+                                   new ChatRequestSettings { MaxTokens = 1000, Temperature = 1 }))
+                {
+                    assistantMessage += assistantWord;
+                    Console.Write(assistantWord);
+                }
+                Console.Write("\n");
+
+                return assistantMessage;
             }
             catch (Exception ex)
             {
